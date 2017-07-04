@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
         loadingIndicator.startAnimating();
         
         alert.view.addSubview(loadingIndicator)
-        
+//        present(alert, animated: true, completion: nil)
         refreshControl.addTarget(self, action: #selector(HomeViewController.reload), for: UIControlEvents.valueChanged)
 
         
@@ -39,7 +39,6 @@ class HomeViewController: UIViewController {
     }
 
     func reload(){
-        present(alert, animated: true, completion: nil)
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
             
