@@ -51,13 +51,14 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func handleUrl(url: URL){
+    func handleUrl(url: URL, success: @escaping () -> ()){
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (response: BDBOAuth1Credential?) in
             if let response = response {
                 print(response.token)
                 self.currentAccount(success: { (user: User) in
                     User.currentUser = user
                     self.loginSuccess?()
+                    success()
                 }, failure: { (error: Error) in
                     self.loginFailure?(error)
                 })

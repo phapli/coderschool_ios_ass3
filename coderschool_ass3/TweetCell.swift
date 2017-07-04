@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import NSDate_TimeAgo
 
 class TweetCell: UITableViewCell {
     
@@ -30,6 +31,7 @@ class TweetCell: UITableViewCell {
             nameLabel.text = tweet.user?.name
             nicknameLabel.text = tweet.user?.screenName
             avatarImage.setImageWith((tweet.user?.profileUrl)!)
+            timeLabel.text = tweet.timestamp?.dateTimeAgo()
         }
     }
     override func awakeFromNib() {

@@ -11,11 +11,23 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var tweets = [Tweet]()
+    let refreshControl = UIRefreshControl()
+    let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        
+        refreshControl.addTarget(self, action: #selector(HomeViewController.reload), for: UIControlEvents.valueChanged)
+
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -27,12 +39,15 @@ class HomeViewController: UIViewController {
     }
 
     func reload(){
+        present(alert, animated: true, completion: nil)
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
             
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }, failure: { (error: Error) in
             print ("error \(error.localizedDescription)")
+            self.refreshControl.endRefreshing()
         })
     }
 

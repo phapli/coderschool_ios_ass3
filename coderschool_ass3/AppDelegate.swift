@@ -52,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let client = TwitterClient.sharedInstance
-        client?.handleUrl(url: url)
+        client?.handleUrl(url: url, success: { 
+            self.goToHome()
+        })
         
         return true
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class Tweet: NSObject{
     var text: String?
-    var timestamp: Date?
+    var timestamp: NSDate?
     var retweetCount: Int = 0
     var favouritesCount: Int = 0
     var retweeted: Bool?
@@ -28,7 +28,7 @@ class Tweet: NSObject{
         if let timestampString = timestampString {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            timestamp = formatter.date(from: timestampString)
+            timestamp = formatter.date(from: timestampString)! as NSDate
         }
         
         let retweeted_status = dictionary["retweeted_status"] as? NSDictionary

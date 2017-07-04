@@ -16,18 +16,18 @@ PODS:
     - AFNetworking/NSURLSession
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
-  - TimeAgo (0.1.0)
+  - NSDate+TimeAgo (1.0.6)
 
 DEPENDENCIES:
   - AFNetworking (= 3.0.0)
   - BDBOAuth1Manager (= 2.0.0)
-  - TimeAgo
+  - NSDate+TimeAgo
 
 SPEC CHECKSUMS:
   AFNetworking: 932ff751f9d6fb1dad0b3af58b7e3ffba0a4e7fd
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
-  TimeAgo: 9d823b32a4c07b038a922724e9fd28f7b1896a78
+  NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
 
-PODFILE CHECKSUM: 399b879f5b0914d556d2a887643c58ca60acaa85
+PODFILE CHECKSUM: 800749283b7c0cf0bdb5247c069644f0ec4be9b4
 
 COCOAPODS: 1.2.1
